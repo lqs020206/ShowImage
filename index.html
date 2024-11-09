@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片压缩对比工具</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>图片压缩对比工具</h1>
+        
+        <div class="upload-area" id="uploadArea">
+            <p>拖放图片到这里或点击上传</p>
+            <input type="file" id="fileInput" accept="image/*" hidden>
+        </div>
+        <button id="deleteButton" class="delete-button" style="display: none;">删除图片</button>
+
+        <div class="controls">
+            <div class="format-select">
+                <label>压缩格式：</label>
+                <select id="formatSelect">
+                    <option value="bpg">BPG</option>
+                    <option value="jpeg">JPEG</option>
+                    <option value="witt">WITT</option>
+                </select>
+            </div>
+            
+            <div class="quality-control">
+                <label>压缩质量：</label>
+                <input type="range" id="qualitySlider" min="0" max="100" value="75">
+                <span id="qualityValue">75</span>
+                <span class="quality-note">(BPG: 0-51的映射值, JPEG: 1-100)</span>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <div class="control-group" id="wittControls" style="display: none;">
+                <div class="select-group">
+                    <label for="channelSelect">Channel:</label>
+                    <select id="channelSelect">
+                        <option value="16">16</option>
+                        <option value="32">32</option>
+                        <option value="64">64</option>
+                        <option value="128" selected>128</option>
+                    </select>
+                </div>
+                <div class="select-group">
+                    <label for="snrSelect">SNR:</label>
+                    <select id="snrSelect">
+                        <option value="1">1 dB</option>
+                        <option value="10" selected>10 dB</option>
+                        <option value="1000">1000 dB</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison">
+            <div class="image-container">
+                <h3>原图</h3>
+                <img id="originalImage" alt="原图">
+                <div class="info">
+                    <p>大小：<span id="originalSize">-</span></p>
+                </div>
+            </div>
+            
+            <div class="image-container">
+                <h3>压缩后</h3>
+                <img id="compressedImage" alt="压缩图">
+                <div class="info">
+                    <p>大小：<span id="compressedSize">-</span></p>
+                    <p>压缩率：<span id="compressionRatio">-</span></p>
+                    <p>PSNR：<span id="psnrValue">-</span></p>
+                    <p>MS-SSIM：<span id="msssimValue">-</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
